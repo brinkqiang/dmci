@@ -1,0 +1,106 @@
+# Build matrix / environment variable are explained on:
+# http://about.travis-ci.org/docs/user/build-configuration/
+# This file can be validated on: http://lint.travis-ci.org/
+
+sudo: false
+dist: trusty
+language: cpp
+
+compiler:
+  - gcc
+  - clang
+os:
+  - linux
+# - osx
+
+env:
+  - BUILD_TYPE=Debug
+# - BUILD_TYPE=RelWithDebInfo
+
+addons:
+  apt:
+    # List of whitelisted in travis packages for ubuntu-trusty can be found here:
+    #   https://github.com/travis-ci/apt-package-whitelist/blob/master/ubuntu-trusty
+    # List of whitelisted in travis apt-sources:
+    #   https://github.com/travis-ci/apt-source-whitelist/blob/master/ubuntu.json
+    sources:
+
+    packages:
+    - cmake
+#   - gcc-7
+#   - g++-7
+#   - clang-5.0
+
+
+install:
+- cmake --version
+
+before_script:
+- mkdir -p build && cd build
+- cmake .. -DCMAKE_BUILD_TYPE=$BUILD_TYPE
+- cmake --build .
+- cd ..
+
+script:
+# Environment variables https://docs.travis-ci.com/user/environment-variables
+- echo $CI
+- echo $TRAVIS
+- echo $CONTINUOUS_INTEGRATION
+- echo $DEBIAN_FRONTEND
+- echo $HAS_JOSH_K_SEAL_OF_APPROVAL
+- echo $USER
+- echo $HOME
+- echo $LANG
+- echo $LC_ALL
+- echo $RAILS_ENV
+- echo $RACK_ENV
+- echo $MERB_ENV
+- echo $JRUBY_OPTS
+- echo $JAVA_HOME
+
+- echo TRAVIS_ALLOW_FAILURE
+- echo TRAVIS_BRANCH
+- echo TRAVIS_BUILD_DIR
+- echo TRAVIS_BUILD_ID
+- echo TRAVIS_BUILD_NUMBER
+- echo TRAVIS_COMMIT
+- echo TRAVIS_COMMIT_MESSAGE
+- echo TRAVIS_COMMIT_RANGE
+- echo TRAVIS_EVENT_TYPE
+- echo TRAVIS_JOB_ID
+- echo TRAVIS_JOB_NUMBER
+- echo TRAVIS_OS_NAME
+- echo TRAVIS_OSX_IMAGE
+- echo TRAVIS_PULL_REQUEST
+- echo TRAVIS_PULL_REQUEST_BRANCH
+- echo TRAVIS_PULL_REQUEST_SHA
+- echo TRAVIS_PULL_REQUEST_SLUG
+- echo TRAVIS_REPO_SLUG
+- echo TRAVIS_SECURE_ENV_VARS
+- echo TRAVIS_SUDO
+- echo TRAVIS_TEST_RESULT
+- echo TRAVIS_TAG
+- echo TRAVIS_BUILD_STAGE_NAME
+
+- echo TRAVIS_DART_VERSION
+- echo TRAVIS_GO_VERSION
+- echo TRAVIS_HAXE_VERSION
+- echo TRAVIS_JDK_VERSION
+- echo TRAVIS_JULIA_VERSION
+- echo TRAVIS_NODE_VERSION
+- echo TRAVIS_OTP_RELEASE
+- echo TRAVIS_PERL_VERSION
+- echo TRAVIS_PHP_VERSION
+- echo TRAVIS_PYTHON_VERSION
+- echo TRAVIS_R_VERSION
+- echo TRAVIS_RUBY_VERSION
+- echo TRAVIS_RUST_VERSION
+- echo TRAVIS_SCALA_VERSION
+- echo TRAVIS_MARIADB_VERSION
+
+- echo TRAVIS_XCODE_SDK
+- echo TRAVIS_XCODE_SCHEME
+- echo TRAVIS_XCODE_PROJECT
+- echo TRAVIS_XCODE_WORKSPACE
+
+
