@@ -94,11 +94,11 @@ test_script:
 - echo %APPVEYOR_ACS_DEPLOYMENT_UPGRADE_MODE%
 
 deploy:
-  release: %APPVEYOR_PROJECT_NAME%-v$(appveyor_build_version)
+  release: "%APPVEYOR_PROJECT_NAME%"-v$(appveyor_build_version)
   description: 'Release description'
   provider: GitHub
   auth_token:
-    secure: %GITHUB_ACCESS_TOKEN%
+    secure: "%GITHUB_ACCESS_TOKEN%"
   artifact: bin\*.exe
   draft: false
   prerelease: false
