@@ -120,8 +120,8 @@ deploy:
   file: bin/*
   skip_cleanup: true
   on:
-    tags: true
-#   all_branches: true
+    tags: false
+    all_branches: true
 
 after_deploy:
 - echo deploy end
