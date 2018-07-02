@@ -99,7 +99,7 @@ deploy:
   provider: GitHub
   auth_token:
     secure: %GITHUB_ACCESS_TOKEN%
-  artifact: bin\*.exe
+  artifact: bin\*\*.exe
   draft: false
   prerelease: false
   on:
