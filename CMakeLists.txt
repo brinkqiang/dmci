@@ -2,6 +2,14 @@ cmake_minimum_required(VERSION 2.8)
 
 PROJECT(dmci)
 
+IF (WIN32)  
+    MESSAGE(STATUS "Now is windows")  
+ELSEIF (APPLE)  
+    MESSAGE(STATUS "Now is Apple systems.")  
+ELSEIF (UNIX)  
+    MESSAGE(STATUS "Now is UNIX-like OS's. Including Apple os x and CygWin")  
+ENDIF ()
+
 ADD_DEFINITIONS(-DUSE_DMPATH)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/)
 INCLUDE_DIRECTORIES(${CMAKE_CURRENT_SOURCE_DIR}/include)
