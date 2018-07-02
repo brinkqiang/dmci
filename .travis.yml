@@ -32,7 +32,7 @@ addons:
 #   - clang-5.0
 
 before_install:
-- travis setup releases
+- cmake --version
 
 install:
 - cmake --version
