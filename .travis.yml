@@ -117,7 +117,7 @@ deploy:
   provider: releases
   api_key:
     secure: $GITHUB_ACCESS_TOKEN
-  file: bin/*
+  file: bin/dmci
   skip_cleanup: true
   on:
     tags: false
