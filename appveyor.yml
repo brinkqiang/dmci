@@ -96,7 +96,7 @@ test_script:
 deploy:
   release: "%APPVEYOR_PROJECT_NAME%-v%APPVEYOR_BUILD_VERSION%"
   description: "Release description"
-  provider: GitHub
+  provider: github
   auth_token:
     secure: "%GITHUB_ACCESS_TOKEN%"
   artifact: bin\$(configuration)\*.exe
