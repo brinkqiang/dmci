@@ -93,6 +93,10 @@ test_script:
 - echo %APPVEYOR_SAVE_CACHE_ON_ERROR%
 - echo %APPVEYOR_ACS_DEPLOYMENT_UPGRADE_MODE%
 
+before_deploy:
+- SET DEPLOY_FALG = false
+- if "$(APPVEYOR_REPO_COMMIT_MESSAGE)" == "BUILD2" do SET DEPLOY_FALG = true
+- echo deploy start
 
 deploy:
   release: "%APPVEYOR_PROJECT_NAME%-v%APPVEYOR_BUILD_VERSION%"
@@ -105,4 +109,4 @@ deploy:
   prerelease: false
   on:
     branch: master
-    appveyor_repo_tag: "$(APPVEYOR_REPO_COMMIT_MESSAGE)" == "BUILD2"
+    appveyor_repo_tag: $(DEPLOY_FALG)
