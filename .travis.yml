@@ -125,7 +125,7 @@ deploy:
     branch: master
     tags: false
     all_branches: true
-    condition: "$TRAVIS_OS_NAME == (linux) && $TRAVIS_COMMIT_MESSAGE == (BUILD) && $BUILD_TYPE == (RelWithDebInfo)"
+    condition: $TRAVIS_OS_NAME == "linux" && $TRAVIS_COMMIT_MESSAGE == "BUILD" && $BUILD_TYPE == "RelWithDebInfo"
 
 after_deploy:
 - echo deploy end
