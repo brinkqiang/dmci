@@ -122,7 +122,6 @@ deploy:
   file: bin/dmci
   skip_cleanup: true
   on:
-    repo: $TRAVIS_REPO_SLUG
     branch: master
     tags: false
     all_branches: true
