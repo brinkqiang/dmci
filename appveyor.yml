@@ -100,8 +100,8 @@ before_deploy:
 
 deploy:
   release: "%APPVEYOR_PROJECT_NAME%-v%APPVEYOR_BUILD_VERSION%"
-  description: 'Release description'
-  provider: GitHub
+  description: "Release description"
+- provider: GitHub
   auth_token:
     secure: "%GITHUB_ACCESS_TOKEN%"
   artifact: bin\$(configuration)\*.exe
@@ -109,4 +109,4 @@ deploy:
   prerelease: false
   on:
     branch: master
-    appveyor_repo_tag: true
+    appveyor_repo_tag: %DEPLOY_FALG%
