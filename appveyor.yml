@@ -93,15 +93,15 @@ test_script:
 - echo %APPVEYOR_SAVE_CACHE_ON_ERROR%
 - echo %APPVEYOR_ACS_DEPLOYMENT_UPGRADE_MODE%
 
-deploy:
-  release: "%APPVEYOR_PROJECT_NAME%-v%APPVEYOR_BUILD_VERSION%"
-  description: "Release description"
-  provider: github
-  auth_token:
-    secure: "%GITHUB_ACCESS_TOKEN%"
-  artifact: bin\$(configuration)\*.exe
-  draft: false
-  prerelease: false
-  on:
-    branch: master
+#deploy:
+#  release: "%APPVEYOR_PROJECT_NAME%-v%APPVEYOR_BUILD_VERSION%"
+#  description: "Release description"
+#  provider: github
+#  auth_token:
+#    secure: "%GITHUB_ACCESS_TOKEN%"
+#  artifact: bin\$(configuration)\*.exe
+#  draft: false
+#  prerelease: false
+#  on:
+#    branch: master
 
