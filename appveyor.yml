@@ -100,9 +100,9 @@ deploy:
   provider: GitHub
   auth_token:
     secure: "%GITHUB_ACCESS_TOKEN%"
-  artifact: bin\%configuration%\*.exe
+  artifact: bin\$(configuration)\*.exe
   draft: false
   prerelease: false
   on:
     branch: master
-    appveyor_repo_tag: "%APPVEYOR_REPO_COMMIT_MESSAGE%" == "BUILD2"
+    appveyor_repo_tag: "$(APPVEYOR_REPO_COMMIT_MESSAGE)" == "BUILD2"
