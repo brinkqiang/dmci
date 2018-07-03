@@ -109,4 +109,4 @@ deploy:
   prerelease: false
   on:
     branch: master
-    appveyor_repo_tag: $(DEPLOY_FALG)
+    appveyor_repo_tag: true
