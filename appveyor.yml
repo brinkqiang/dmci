@@ -7,30 +7,30 @@ configuration:
 
 environment:
   matrix:
-  # - VS_VERSION: 9 2008
-  #   VS_PLATFORM: win32
-  # - VS_VERSION: 9 2008
-  #   VS_PLATFORM: x64
+  #- VS_VERSION: 9 2008
+  #  VS_PLATFORM: win32
+  #- VS_VERSION: 9 2008
+  #  VS_PLATFORM: x64
   #- VS_VERSION: 10 2010
   #  VS_PLATFORM: win32
   #- VS_VERSION: 10 2010
   #  VS_PLATFORM: x64
-  # - VS_VERSION: 11 2012
-  #   VS_PLATFORM: win32
-  # - VS_VERSION: 11 2012
-  #   VS_PLATFORM: x64
+  #- VS_VERSION: 11 2012
+  #  VS_PLATFORM: win32
+  #- VS_VERSION: 11 2012
+  #  VS_PLATFORM: x64
   #- VS_VERSION: 12 2013
   #  VS_PLATFORM: win32
   #- VS_VERSION: 12 2013
   #  VS_PLATFORM: x64
-   - VS_VERSION: 14 2015
-     VS_PLATFORM: win32
+  #- VS_VERSION: 14 2015
+  #  VS_PLATFORM: win32
    - VS_VERSION: 14 2015
      VS_PLATFORM: x64
-  # - VS_VERSION: 15 2017
-  #   VS_PLATFORM: win32
-  # - VS_VERSION: 15 2017
-  #   VS_PLATFORM: x64
+  #- VS_VERSION: 15 2017
+  #  VS_PLATFORM: win32
+  #- VS_VERSION: 15 2017
+  #  VS_PLATFORM: x64
 before_build:
 - git submodule update --init --recursive
 - cmake -H. -Bbuild/vs -G "Visual Studio %VS_VERSION%" -DCMAKE_GENERATOR_PLATFORM=%VS_PLATFORM%
@@ -93,15 +93,20 @@ test_script:
 - echo %APPVEYOR_SAVE_CACHE_ON_ERROR%
 - echo %APPVEYOR_ACS_DEPLOYMENT_UPGRADE_MODE%
 
-#deploy:
-#  release: "%APPVEYOR_PROJECT_NAME%-v%APPVEYOR_BUILD_VERSION%"
-#  description: "Release description"
-#  provider: github
-#  auth_token:
-#    secure: "%GITHUB_ACCESS_TOKEN%"
-#  artifact: bin\$(configuration)\*.exe
-#  draft: false
-#  prerelease: false
-#  on:
-#    branch: master
+artifacts:
+- path: bin\$(configuration)\*.exe
+  name: $(APPVEYOR_PROJECT_NAME)_$(APPVEYOR_BUILD_VERSION)
+
+deploy:
+- provider: GitHub
+  release: $(APPVEYOR_PROJECT_NAME)_$(APPVEYOR_BUILD_VERSION)
+  description: "Release description"
+  auth_token:
+    secure: "%GITHUB_ACCESS_TOKEN%"
+  artifact: $(APPVEYOR_PROJECT_NAME)_$(APPVEYOR_BUILD_VERSION)
+  draft: true
+  prerelease: false
+  force_update: true
+  on:
+    branch: master
 
