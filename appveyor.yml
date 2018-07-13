@@ -102,7 +102,7 @@ deploy:
   release: $(APPVEYOR_PROJECT_NAME)_$(APPVEYOR_BUILD_VERSION)
   description: "Release description"
   auth_token:
-    secure: "%GITHUB_ACCESS_TOKEN%"
+    secure: "$(GITHUB_ACCESS_TOKEN)"
   artifact: $(APPVEYOR_PROJECT_NAME)_$(APPVEYOR_BUILD_VERSION)
   draft: true
   prerelease: false
